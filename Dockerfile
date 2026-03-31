@@ -1,4 +1,4 @@
-FROM runpod/pytorch:2.1.0-py3.10-cuda11.8.0-devel-ubuntu22.04
+FROM pytorch/pytorch:2.4.1-cuda12.4-cudnn9-runtime
 
 # Install all ML + server dependencies in one layer
 RUN pip install --no-cache-dir \
