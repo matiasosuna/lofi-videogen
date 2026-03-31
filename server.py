@@ -213,8 +213,12 @@ def _generate_worker(task_id, model_name, prompt, negative_prompt,
 
 @app.get("/health")
 def health():
-    gpu_name = torch.cuda.get_device_name(0) if torch.cuda.is_available() else "No GPU"
-    gpu_mem = torch.cuda.get_device_properties(0).total_mem / (1024**3) if torch.cuda.is_available() else 0
+    try:
+        gpu_name = torch.cuda.get_device_name(0) if torch.cuda.is_available() else "No GPU"
+        gpu_mem = torch.cuda.get_device_properties(0).total_mem / (1024**3) if torch.cuda.is_available() else 0
+    except Exception:
+        gpu_name = "Unknown"
+        gpu_mem = 0
     return {
         "status": "ok",
         "gpu": gpu_name,
