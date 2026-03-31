@@ -39,8 +39,8 @@ def _update_task(task_id, **kwargs):
 MODELS = {
     "wan2.2": {
         "name": "Wan 2.2",
-        "repo": "Wan-AI/Wan2.2-T2V-14B",
-        "repo_i2v": "Wan-AI/Wan2.2-I2V-14B",
+        "repo": "Wan-AI/Wan2.2-T2V-1.3B",
+        "repo_i2v": "Wan-AI/Wan2.2-I2V-1.3B",
         "type": "wan",
         "vram": "24GB",
         "description": "Fast, good quality. Best value.",
@@ -67,13 +67,13 @@ def _load_wan(mode="t2v"):
     if mode == "i2v":
         from diffusers import WanImageToVideoPipeline
         pipe = WanImageToVideoPipeline.from_pretrained(
-            "Wan-AI/Wan2.2-I2V-14B",
+            "Wan-AI/Wan2.2-I2V-1.3B",
             torch_dtype=torch.float16,
         )
     else:
         from diffusers import WanPipeline
         pipe = WanPipeline.from_pretrained(
-            "Wan-AI/Wan2.2-T2V-14B",
+            "Wan-AI/Wan2.2-T2V-1.3B",
             torch_dtype=torch.float16,
         )
     pipe = pipe.to("cuda")
