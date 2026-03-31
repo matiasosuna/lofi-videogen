@@ -39,7 +39,7 @@ def _update_task(task_id, **kwargs):
 MODELS = {
     "wan2.2": {
         "name": "Wan 2.2",
-        "repo": "Wan-AI/Wan2.1-T2V-1.3B",
+        "repo": "Wan-AI/Wan2.1-T2V-1.3B-Diffusers",
         "repo_i2v": None,
         "type": "wan",
         "vram": "24GB",
@@ -73,7 +73,7 @@ def _load_wan(mode="t2v"):
     else:
         from diffusers import WanPipeline
         pipe = WanPipeline.from_pretrained(
-            "Wan-AI/Wan2.1-T2V-1.3B",
+            "Wan-AI/Wan2.1-T2V-1.3B-Diffusers",
             torch_dtype=torch.float16,
         )
     pipe = pipe.to("cuda")
