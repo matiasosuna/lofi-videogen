@@ -11,7 +11,8 @@ RUN pip install --no-cache-dir \
     fastapi \
     uvicorn \
     python-multipart \
-    safetensors
+    safetensors \
+    opencv-python-headless
 
 # Copy server
 COPY server.py /opt/server.py
