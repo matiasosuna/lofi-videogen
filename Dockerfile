@@ -1,10 +1,10 @@
-FROM pytorch/pytorch:2.4.1-cuda12.4-cudnn9-runtime
+FROM pytorch/pytorch:2.6.0-cuda12.4-cudnn9-runtime
 
 # Install all ML + server dependencies in one layer
 RUN pip install --no-cache-dir \
-    diffusers==0.32.2 \
-    transformers==4.47.1 \
-    accelerate==1.2.1 \
+    diffusers \
+    transformers \
+    accelerate \
     sentencepiece \
     protobuf \
     Pillow \

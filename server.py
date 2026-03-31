@@ -47,17 +47,10 @@ MODELS = {
     },
     "hunyuan": {
         "name": "HunyuanVideo",
-        "repo": "tencent/HunyuanVideo",
+        "repo": "hunyuanvideo-community/HunyuanVideo",
         "type": "hunyuan",
         "vram": "48GB",
         "description": "Best quality. Cinematic realism.",
-    },
-    "skyreels": {
-        "name": "SkyReels V1",
-        "repo": "Skywork/SkyReels-V1-Hunyuan-I2V",
-        "type": "skyreels",
-        "vram": "48GB",
-        "description": "Cinematic. Best for professional content.",
     },
 }
 
@@ -92,24 +85,12 @@ def _load_hunyuan():
     """Load HunyuanVideo model."""
     from diffusers import HunyuanVideoPipeline
     pipe = HunyuanVideoPipeline.from_pretrained(
-        "tencent/HunyuanVideo",
+        "hunyuanvideo-community/HunyuanVideo",
         torch_dtype=torch.float16,
     )
     pipe = pipe.to("cuda")
     pipe.enable_model_cpu_offload()
     pipe.enable_attention_slicing()
-    return pipe
-
-
-def _load_skyreels():
-    """Load SkyReels V1 model."""
-    from diffusers import HunyuanVideoImageToVideoPipeline
-    pipe = HunyuanVideoImageToVideoPipeline.from_pretrained(
-        "Skywork/SkyReels-V1-Hunyuan-I2V",
-        torch_dtype=torch.float16,
-    )
-    pipe = pipe.to("cuda")
-    pipe.enable_model_cpu_offload()
     return pipe
 
 
@@ -133,8 +114,6 @@ def _get_model(model_name, mode="t2v"):
             _loaded_model = _load_wan(mode)
         elif model_name == "hunyuan":
             _loaded_model = _load_hunyuan()
-        elif model_name == "skyreels":
-            _loaded_model = _load_skyreels()
         else:
             raise ValueError(f"Unknown model: {model_name}")
 
